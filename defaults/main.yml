@@ -2,10 +2,10 @@
 
 rabbitmq_enabled: yes
 
-rabbitmq_plugins:                       # Ensure the plugins is installed
+rabbitmq_plugins:
   - rabbitmq_management
 
-rabbitmq_users:                         # Ensure the users added
+rabbitmq_users:
   - user: admin
     password: admin
     vhost: /
@@ -14,7 +14,39 @@ rabbitmq_users:                         # Ensure the users added
     write_priv: .*
     tags: administrator
 
-rabbitmq_vhosts: []                     # Ensure the vhosts are exists
+rabbitmq_vhosts: []
 
-rabbitmq_users_remove:                  # Ensure the users removed
+rabbitmq_users_remove:
   - guest
+
+rabbitmq_db_dir: /var/lib/rabbitmq/mnesia
+
+rabbitmq_service_user: rabbitmq
+rabbitmq_service_group: rabbitmq
+
+rabbitmq_env_conf: {}
+
+# Custom Environment Variables
+# rabbitmq_node_ip_address: ~
+# rabbitmq_node_port: ~
+# rabbitmq_dist_port: ~
+# rabbitmq_nodename: ~
+# rabbitmq_use_longname: ~
+# rabbitmq_servicename: ~
+# rabbitmq_console_log: ~
+# rabbitmq_ctl_erl_args: ~
+# rabbitmq_server_erl_args: ~
+# rabbitmq_server_additional_erl_args: ~
+# rabbitmq_server_start_args: ~
+
+# rabbitmq_file_location_base: ~
+# rabbitmq_file_location_config_file: /etc/rabbitmq/rabbitmq
+# rabbitmq_file_location_mnesia_base: /var/lib/rabbitmq/mnesia
+# rabbitmq_file_location_mnesia_dir: $RABBITMQ_MNESIA_BASE/$RABBITMQ_NODENAME
+# rabbitmq_file_location_log_base: /var/log/rabbitmq
+# rabbitmq_file_location_logs: $RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME.log
+# rabbitmq_file_location_sasl_logs: $RABBITMQ_LOG_BASE/$RABBITMQ_NODENAME-sasl.log
+# rabbitmq_file_location_plugins_dir: $RABBITMQ_HOME/plugins
+# rabbitmq_file_location_plugins_expand_dir: $RABBITMQ_MNESIA_BASE/$RABBITMQ_NODENAME-plugins-expand
+# rabbitmq_file_location_enabled_plugins_file: ${install_prefix}/etc/rabbitmq/enabled_plugins
+# rabbitmq_file_location_pid_file: $RABBITMQ_MNESIA_DIR.pid

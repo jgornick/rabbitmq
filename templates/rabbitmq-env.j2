@@ -1,0 +1,6 @@
+RABBITMQ_MNESIA_BASE={{ rabbitmq_db_dir }}
+{% if rabbitmq_env_conf is defined and rabbitmq_env_conf is iterable %}
+{% for k, v in rabbitmq_env_conf.iteritems() %}
+{{ k | upper }}={{ v }}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,16 @@
+---
+
+- name: RabbitMQ | Add RabbitMQ key
+  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present id=056E8E56
+
+- name: RabbitMQ | Add RabbitMQ repository
+  apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main' update_cache=yes
+
+- name: RabbitMQ | Ensure RabbitMQ is installed
+  apt: pkg=rabbitmq-server
+  environment:
+    # Prevent service from automatically starting after install
+    RUNLEVEL: 1
+
+- name: RabbitMQ | Symlink RabbitMQ bin to sbin
+  file: state=link src=/usr/lib/rabbitmq/bin dest=/usr/lib/rabbitmq/sbin

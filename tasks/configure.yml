@@ -1,0 +1,27 @@
+---
+
+- name: RabbitMQ | Setup data directory
+  file:
+    path: "{{ rabbitmq_db_dir }}"
+    owner: "{{ rabbitmq_service_user }}"
+    group: "{{ rabbitmq_service_group }}"
+    state: directory
+    mode: 0770
+  register: rabbitmq_db_dir_setup_result
+
+- name: RabbitMQ | Update environment variables configuration
+  template:
+    src: rabbitmq-env.j2
+    dest: /etc/rabbitmq/rabbitmq-env.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: rabbitmq_env_result
+
+- name: RabbitMQ | Restart RabbitMQ
+  service:
+    name: rabbitmq-server
+    state: restarted
+  when: >
+    rabbitmq_db_dir_setup_result.changed
+    or rabbitmq_env_result.changed
